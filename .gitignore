@@ -1,0 +1,32 @@
+# Environment variables
+.env
+
+#data
+data/
+.csv
+
+# Python specific
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+env/
+
+# dbt specific
+dbt_packages/
+dbt_modules/
+logs/
+target/
+dbt_project/dbt_profiles.yml # If you decide to keep profiles.yml inside the project and not in ~/.dbt
+
+# Docker specific
+.dockerignore
+
+# IDE specific (e.g., VS Code)
+.vscode/
+
+# Operating System files
+.DS_Store
+Thumbs.db

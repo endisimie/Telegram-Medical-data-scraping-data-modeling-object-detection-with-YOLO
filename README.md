@@ -71,13 +71,7 @@ Developed REST endpoints to access insights from the modeled warehouse.
 | GET    | `/api/channels/{channel_name}/activity`  | Message count by date      |
 | GET    | `/api/search/messages?query=paracetamol` | Search messages by keyword |
 
-Structure:
-my_project/
-├── main.py       # FastAPI entry point
-├── crud.py       # Business logic
-├── database.py   # Connection setup
-├── models.py     # ORM models (if used)
-└── schemas.py    # Response models (Pydantic)
+
 
 ## Pipeline Orchestration with Dagster
 Installed and configured Dagster for orchestration.
@@ -87,17 +81,6 @@ Defined Ops for:
 - Loading raw data into PostgreSQL
 - Running dbt transformations
 - Enriching with YOLO
-
-Dagster Structure:
-telegram_dagster_pipeline/
-├── ops/
-│   ├── scrape.py
-│   ├── load.py
-│   ├── dbt.py
-│   └── yolo.py
-├── jobs.py
-├── schedules.py
-└── repository.py
 
 
 ## ⚙️ Setup Instructions

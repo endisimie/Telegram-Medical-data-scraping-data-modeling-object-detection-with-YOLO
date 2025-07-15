@@ -6,8 +6,6 @@ This project is part of **10 Academy Week 7 Challenge**. It demonstrates an end-
 ---
 
 
----
-
 ## 🎯 Tasks Overview
 
 ### ✅ Task 0: Environment Setup
@@ -58,6 +56,50 @@ This project is part of **10 Academy Week 7 Challenge**. It demonstrates an end-
 
 ---
 
+🧠 Data Enrichment with YOLOv8
+Installed ultralytics and used YOLOv8n to detect objects in scraped images.
+Mapped predictions to their corresponding message_ids.
+Created fct_image_detections fact table:
+
+message_id, object_class, confidence_score
+
+## 🌐 Analytical API with FastAPI
+Developed REST endpoints to access insights from the modeled warehouse.
+| Method | Route                                    | Description                |
+| ------ | ---------------------------------------- | -------------------------- |
+| GET    | `/api/reports/top-products?limit=10`     | Most mentioned terms       |
+| GET    | `/api/channels/{channel_name}/activity`  | Message count by date      |
+| GET    | `/api/search/messages?query=paracetamol` | Search messages by keyword |
+
+Structure:
+my_project/
+├── main.py       # FastAPI entry point
+├── crud.py       # Business logic
+├── database.py   # Connection setup
+├── models.py     # ORM models (if used)
+└── schemas.py    # Response models (Pydantic)
+
+## Pipeline Orchestration with Dagster
+Installed and configured Dagster for orchestration.
+
+Defined Ops for:
+- Scraping Telegram data
+- Loading raw data into PostgreSQL
+- Running dbt transformations
+- Enriching with YOLO
+
+Dagster Structure:
+telegram_dagster_pipeline/
+├── ops/
+│   ├── scrape.py
+│   ├── load.py
+│   ├── dbt.py
+│   └── yolo.py
+├── jobs.py
+├── schedules.py
+└── repository.py
+
+
 ## ⚙️ Setup Instructions
 
 ### 🐳 Docker
@@ -75,6 +117,16 @@ dbt run       # Runs all models
 dbt test      # Runs data tests
 dbt docs serve  # Opens model documentation
 
+```
+## Run the Dagster UI:
 
+```bash
 
+dagster dev
+Run each step from the Dagster UI or command line.
 
+Serve API:
+
+uvicorn main:app --reload
+Visit:
+http://localhost:8000/docs

@@ -1,13 +1,16 @@
 -- models/staging/stg_telegram_messages.sql
-with raw_data as (
-  select * from {{ source('raw_data', 'telegram_messages') }}
-)
-select
-  id::int as message_id,
-  channel_id::int,
-  date::timestamp as sent_at,
-  message::text as message_text,
-  media,
-  length(message) as message_length,
-  case when media like '%photo%' then true else false end as has_image
-from raw_data
+
+{{ config(materialized='view') }}
+
+SELECT
+    id AS message_id,
+    (text IS NOT NULL AND LENGTH(TRIM(text)) > 0) AS has_text,
+    TRIM(text) AS message_text,
+    media,
+    CAST(date AS TIMESTAMP) AS message_date,
+    DATE(date) AS message_day,
+    EXTRACT(HOUR FROM date) AS message_hour,
+    LENGTH(TRIM(text)) AS message_length,
+    channel_id
+FROM raw_data.telegram_messages
+WHERE text IS NOT NULL

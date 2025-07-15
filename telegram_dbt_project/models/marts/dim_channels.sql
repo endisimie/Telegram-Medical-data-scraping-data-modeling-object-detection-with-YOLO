@@ -1,4 +1,8 @@
-select distinct
-  channel_id,
-  'Channel ' || channel_id as channel_name
-from {{ ref('stg_telegram_messages') }}
+-- models/marts/dim_channels.sql
+
+{{ config(materialized='view') }}
+
+SELECT
+    NULL::INTEGER AS channel_id,
+    NULL::TEXT AS channel_name
+WHERE FALSE

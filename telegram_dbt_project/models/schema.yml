@@ -24,3 +24,9 @@ models:
     columns:
       - name: message_id
         tests: [not_null, unique]
+  - name: fct_image_detections
+    columns:
+      - name: message_id
+        tests: [not_null]
+      - name: object_class
+        tests: [not_null]

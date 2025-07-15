@@ -1,0 +1,22 @@
+[project]
+name = "telegram_medical_pipeline"
+version = "0.1.0"
+description = "Telegram medical data scraping and analysis pipeline using Dagster"
+authors = [
+    { name="Your Name", email="your.email@example.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "dagster",
+    "dagster-webserver",
+    "psycopg2-binary",
+    "dbt-core",
+    "dbt-postgres",
+    "ultralytics",
+    "fastapi",
+    "uvicorn",
+    "pydantic"
+]
+
+[tool.dagster]
+module_name = "repository"
